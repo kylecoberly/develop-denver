@@ -1,4 +1,7 @@
-document.querySelector("form").addEventListener("submit", submitEmail);
+const $form = document.querySelector("form");
+const $message = document.querySelector(".message");
+
+$form.addEventListener("submit", submitEmail);
 
 function submitEmail(event){
     event.preventDefault();
@@ -9,5 +12,10 @@ function submitEmail(event){
 }
 
 function showMessage(message){
-    document.querySelector(".message").textContent = message;
+    hideForm();
+    $message.textContent = message;
+}
+
+function hideForm(){
+    $form.style.display = "none";
 }

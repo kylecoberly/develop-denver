@@ -96,10 +96,15 @@ input {
     font-weight: 700;
     padding: 1rem;
     transition: all 0.2s;
-    margin-bottom: 8rem;
 }
 [type=submit]:hover {
     background-color: #d43e53;
+}
+
+.message {
+    text-align: center;
+    padding: 1rem;
+    font-size: 2rem;
 }
 
 label {
@@ -107,6 +112,7 @@ label {
 }
 
 footer {
+    margin-top: 8rem;
     background-color: #252525;
     color: #fff;
     grid-template-area: "footer";
