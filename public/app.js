@@ -5,10 +5,47 @@ $form.addEventListener("submit", submitEmail);
 
 function submitEmail(event){
     event.preventDefault();
-    const formData = new FormData(event.target);
-    console.log(formData.get("email"));
     event.target.reset();
-    showMessage("We'll let you know when we have more details!");
+
+    const formData = new FormData(event.target);
+    addToCampaign(formData.get("email"))
+        .then(parseResponse)
+        .then(handleResponse)
+        .catch(handleError);
+}
+
+function addToCampaign(email){
+    const url = `https://usX.api.mailchimp.com/3.0/lists/57afe96172/members`;
+    const API_KEY = ``;
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            user: "",
+        },
+        body: JSON.stringify({
+            email_address: email,
+            status: "subscribed"
+        })
+    });
+}
+
+function parseResponse(response){
+    if (response.status >= 400){
+        throw new Error(error);
+    }
+    return response.json();
+}
+
+function handleResponse(response){
+    const message = "We'll let you know when we have more details!";
+    showMessage(message);
+}
+
+function handleError(error){
+    console.error(error.message);
+    const errorMessage = "There was a problem processing your email, sorry!";
+    showMessage(errorMessage);
 }
 
 function showMessage(message){
@@ -17,5 +54,5 @@ function showMessage(message){
 }
 
 function hideForm(){
-    $form.style.display = "none";
+    $form.style.visibility = "hidden";
 }
