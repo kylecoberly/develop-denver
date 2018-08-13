@@ -5,28 +5,25 @@ $form.addEventListener("submit", submitEmail);
 
 function submitEmail(event){
     event.preventDefault();
-    event.target.reset();
 
-    const formData = new FormData(event.target);
-    addToCampaign(formData.get("email"))
+    const email = event.target.querySelector("[name=email]").value;
+    addToCampaign(email)
         .then(parseResponse)
         .then(handleResponse)
+        .then(event.target.reset)
         .catch(handleError);
 }
 
 function addToCampaign(email){
-    const url = `https://usX.api.mailchimp.com/3.0/lists/57afe96172/members`;
-    const API_KEY = ``;
+    const url = `https://dvlp-emails.herokuapp.com`
     return fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            user: "",
         },
         body: JSON.stringify({
             email_address: email,
-            status: "subscribed"
-        })
+        }),
     });
 }
 
