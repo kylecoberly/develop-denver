@@ -10,7 +10,6 @@ function submitEmail(event){
     addToCampaign(email)
         .then(parseResponse)
         .then(handleResponse)
-        .then(event.target.reset)
         .catch(handleError);
 }
 
