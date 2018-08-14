@@ -50,6 +50,25 @@ main {
     margin-bottom: 2rem;
 }
 
+.hero .info {
+    max-width: 500px;
+}
+
+.hero span {
+    display: block;
+    z-index: 10;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.3rem;
+    color: #666;
+    text-align: right;
+}
+
+.info .dates {
+    margin-top: 2rem;
+}
+
+
 .hero img {
     width: 100%;
     max-height: 100%;
